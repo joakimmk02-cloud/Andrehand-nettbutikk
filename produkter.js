@@ -30,23 +30,23 @@ const PRODUKTER = [
     tekst: "Svart bomberjakke med pelskant på hetten, patcher på ermet og rød tag på lommen.",
     bilder: ["bilder/alpha-bomber-1.jpg", "bilder/alpha-bomber-2.jpg", "bilder/alpha-bomber-3.jpg"] },
 
-  { id: 24, navn: "Levi's hettegenser, svart", kat: "Herre", type: "hettegenser", str: "M", merke: "Levi's", tilstand: "Lite brukt", pris: 200, mal: "",
+  { id: 24, navn: "Levi's hettegenser, svart", kat: "Herre", type: "hettegenser", str: "M", merke: "Levi's", tilstand: "Lite brukt", pris: "200", mal: "",
     tekst: "Svart hettegenser med rød Levi's-logo på brystet og stor lomme foran.",
     bilder: ["bilder/levis-hettegenser-svart-1.jpg"] },
 
-  { id: 23, navn: "Jean Paul genser med glidelås, hvit", kat: "Herre", type: "genser", str: "S", merke: "Jean Paul", tilstand: "Som ny", pris: solgt, mal: "",
+  { id: 23, navn: "Jean Paul genser med glidelås, hvit", kat: "Herre", type: "genser", str: "S", merke: "Jean Paul", tilstand: "Som ny", pris: "solgt", mal: "",
     tekst: "Hvit kabelstrikket genser med glidelås i halsen.",
     bilder: ["bilder/jeanpaul-zipgenser-1.jpg", "bilder/jeanpaul-zipgenser-2.jpg"] },
 
-  { id: 22, navn: "Høstjakke", kat: "Herre", type: "jakke", str: "M", merke: "Henry choice", tilstand: "Som ny!", pris: solgt, mal: "",
+  { id: 22, navn: "Høstjakke", kat: "Herre", type: "jakke", str: "M", merke: "Henry choice", tilstand: "Som ny!", pris: "solgt", mal: "",
     tekst: "Marineblå parkas med lodden krage, rutete fôr og store lommer foran.",
     bilder: ["bilder/parkas-1.jpg", "bilder/parkas-2.jpg"] },
 
-  { id: 21, navn: "Pull&Bear bomberjakke", kat: "Herre", type: "jakke", str: "M", merke: "Pull&Bear", tilstand: "Lite brukt!", pris: 150, mal: "",
+  { id: 21, navn: "Pull&Bear bomberjakke", kat: "Herre", type: "jakke", str: "M", merke: "Pull&Bear", tilstand: "Lite brukt!", pris: "150", mal: "",
     tekst: "Svart bomberjakke med rødbrunt fôr og lomme med glidelås på ermet.",
     bilder: ["bilder/pullbear-bomber-1.jpg", "bilder/pullbear-bomber-2.jpg"] },
 
-  { id: 20, navn: "Hollister hettegenser, rød", kat: "Herre", type: "hettegenser", str: "M", merke: "Hollister", tilstand: "", pris: 170, mal: "",
+  { id: 20, navn: "Hollister hettegenser, rød", kat: "Herre", type: "hettegenser", str: "M", merke: "Hollister", tilstand: "", pris: "170", mal: "",
     tekst: "Rød og hvit hettegenser med liten måke-logo.",
     bilder: ["bilder/hollister-hettegenser-rod-1.jpg", "bilder/hollister-hettegenser-rod-2.jpg"] },
 
