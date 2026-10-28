@@ -21,24 +21,24 @@
    ===================================================================== */
 
 const BUTIKK = {
-  epost: "Joakimmk02gmail.com",   // hit sendes bestillingene
+  epost: "Joakimmk02@gmail.com",   // hit sendes bestillingene
   frakt: 69                          // fast fraktpris i kr
 };
 
 const PRODUKTER = [
-  { id: 25, navn: "Alpha Industries bomberjakke", kat: "Herre", type: "jakke", str: "M", merke: "Alpha Industries", tilstand: "", pris: "500", mal: "",
+  { id: 25, navn: "Alpha Industries bomberjakke", kat: "Herre", type: "jakke", str: "M", merke: "Alpha Industries", tilstand: "Lite brukt", pris: "500", mal: "",
     tekst: "Svart bomberjakke med pelskant på hetten, patcher på ermet og rød tag på lommen.",
     bilder: ["bilder/alpha-bomber-1.jpg", "bilder/alpha-bomber-2.jpg", "bilder/alpha-bomber-3.jpg"] },
 
-  { id: 24, navn: "Levi's hettegenser, svart", kat: "Herre", type: "hettegenser", str: "", merke: "Levi's", tilstand: "", pris: 200, mal: "",
+  { id: 24, navn: "Levi's hettegenser, svart", kat: "Herre", type: "hettegenser", str: "M", merke: "Levi's", tilstand: "Lite brukt", pris: 200, mal: "",
     tekst: "Svart hettegenser med rød Levi's-logo på brystet og stor lomme foran.",
     bilder: ["bilder/levis-hettegenser-svart-1.jpg"] },
 
-  { id: 23, navn: "Jean Paul genser med glidelås, hvit", kat: "Herre", type: "genser", str: "S", merke: "Jean Paul", tilstand: "Som ny", pris: null, mal: "",
+  { id: 23, navn: "Jean Paul genser med glidelås, hvit", kat: "Herre", type: "genser", str: "S", merke: "Jean Paul", tilstand: "Som ny", pris: solgt, mal: "",
     tekst: "Hvit kabelstrikket genser med glidelås i halsen.",
     bilder: ["bilder/jeanpaul-zipgenser-1.jpg", "bilder/jeanpaul-zipgenser-2.jpg"] },
 
-  { id: 22, navn: "Marineblå parkas med fôr", kat: "Herre", type: "jakke", str: "", merke: "", tilstand: "", pris: null, mal: "",
+  { id: 22, navn: "Høstjakke", kat: "Herre", type: "jakke", str: "M", merke: "Henry choice", tilstand: "Som ny!", pris: solgt, mal: "",
     tekst: "Marineblå parkas med lodden krage, rutete fôr og store lommer foran.",
     bilder: ["bilder/parkas-1.jpg", "bilder/parkas-2.jpg"] },
 
