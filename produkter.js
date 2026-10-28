@@ -46,7 +46,7 @@ const PRODUKTER = [
     tekst: "Svart bomberjakke med rødbrunt fôr og lomme med glidelås på ermet.",
     bilder: ["bilder/pullbear-bomber-1.jpg", "bilder/pullbear-bomber-2.jpg"] },
 
-  { id: 20, navn: "Hollister hettegenser, rød", kat: "Herre", type: "hettegenser", str: "M", merke: "Hollister", tilstand: "", pris: null, mal: "",
+  { id: 20, navn: "Hollister hettegenser, rød", kat: "Herre", type: "hettegenser", str: "M", merke: "Hollister", tilstand: "", pris: 170, mal: "",
     tekst: "Rød og hvit hettegenser med liten måke-logo.",
     bilder: ["bilder/hollister-hettegenser-rod-1.jpg", "bilder/hollister-hettegenser-rod-2.jpg"] },
 
