@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andre Hånd – thriftede klær</title>
+<meta name="description" content="Håndplukkede bruktklær. Bare ett eksemplar av hvert plagg.">
+<style>
+:root{--bg:#e8eae4;--ink:#1e2421;--muted:#66706a;--green:#2f4a3a;--sticker:#f3d83b;--card:#f7f8f5;--line:#c9cfc6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+h1,h2,h3,.logo{font-family:Georgia,"Times New Roman",serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+button{font:inherit;cursor:pointer}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* Topp */
+.top{background:var(--green);color:#fff}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
+.logo{font-size:1.5rem;font-weight:bold;text-decoration:none}
+.top nav{display:flex;align-items:center;gap:20px}
+.top nav a{text-decoration:none}
+.top nav a:hover{text-decoration:underline}
+.cartbtn{background:var(--sticker);color:var(--ink);border:0;border-radius:20px;padding:6px 14px;font-weight:bold}
+
+/* Hero */
+.hero{padding:56px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:30px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;margin-bottom:18px}
+.hero p{max-width:46ch;color:var(--muted);margin-bottom:22px}
+.btn{display:inline-block;background:var(--ink);color:#fff;border:0;border-radius:6px;padding:11px 20px;text-decoration:none;font-weight:bold}
+.btn:hover{background:var(--green)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn[disabled]:hover{background:var(--ink)}
+.big-sticker{justify-self:center;width:210px;height:210px;border-radius:50%;background:var(--sticker);display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(-8deg);box-shadow:0 0 0 3px var(--ink) inset;text-align:center}
+.big-sticker b{font-family:Georgia,serif;font-size:3.2rem;line-height:1}
+.big-sticker span{font-size:1rem;max-width:12ch}
+
+/* Filter */
+.filters{position:sticky;top:0;z-index:5;background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.filters .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding-top:12px;padding-bottom:12px}
+.seg{display:inline-flex;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden}
+.seg[hidden]{display:none}
+.seg button{background:transparent;border:0;padding:7px 16px;color:var(--ink)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+select{font:inherit;padding:7px 10px;border:1.5px solid var(--line);border-radius:6px;background:#fff;color:var(--ink)}
+.filters label.chk{display:flex;gap:6px;align-items:center;font-size:.95rem}
+.count{margin-left:auto;color:var(--muted);font-size:.95rem}
+
+/* Rutenett */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:26px 20px;padding:30px 0 50px;align-items:start}
+.item{background:none;border:0;text-align:left;color:inherit;display:block;width:100%}
+.ph{position:relative;aspect-ratio:3/4;border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph svg{width:72%;height:auto}
+.item:hover .ph{outline:3px solid var(--ink)}
+.sticker{position:absolute;top:10px;right:10px;background:var(--sticker);color:var(--ink);padding:5px 11px;border-radius:50px;font-weight:bold;transform:rotate(4deg);box-shadow:0 0 0 2px var(--ink) inset}
+.sold .ph{filter:grayscale(1);opacity:.55}
+.sold .sticker{background:#cfd3cd;box-shadow:0 0 0 2px var(--muted) inset;color:var(--muted)}
+.meta{padding:10px 2px 0}
+.meta h3{font-size:1.05rem;line-height:1.3}
+.meta p{color:var(--muted);font-size:.9rem;min-height:1.4em}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+
+/* Info */
+.info{background:#fff;border-top:1px solid var(--line)}
+.info .wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px;padding-top:40px;padding-bottom:40px}
+.info h2{font-size:1.25rem;margin-bottom:8px}
+.info p{color:var(--muted)}
+footer{background:var(--green);color:#fff;text-align:center;padding:22px 20px}
+
+/* Detalj og kurv */
+dialog{margin:auto;border:0;border-radius:8px;max-width:800px;width:calc(100% - 30px);max-height:92vh;overflow:auto;padding:0;background:var(--card);color:var(--ink)}
+dialog::backdrop{background:rgba(20,28,24,.6)}
+.d{display:grid;grid-template-columns:1fr 1fr}
+.gal{background:#dfe3da}
+.gal .ph{border-radius:0}
+.thumbs{display:flex;gap:6px;padding:8px;flex-wrap:wrap}
+.thumbs button{width:58px;aspect-ratio:3/4;padding:0;border:2px solid transparent;border-radius:3px;overflow:hidden;background:none}
+.thumbs button img{width:100%;height:100%;object-fit:cover;display:block}
+.thumbs button[aria-current="true"]{border-color:var(--ink)}
+.d .txt{padding:26px}
+.d h2{font-size:1.6rem;line-height:1.2;margin-bottom:6px}
+.d dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:14px 0;font-size:.95rem}
+.d dt{color:var(--muted)}
+.price{font-family:Georgia,serif;font-size:1.8rem;font-weight:bold;margin:10px 0}
+.close{position:absolute;top:8px;right:10px;z-index:2;background:#fff;border:1.5px solid var(--ink);border-radius:50%;width:34px;height:34px;font-size:1.1rem}
+.cart{position:fixed;top:0;right:0;height:100%;width:min(380px,100%);background:var(--card);box-shadow:-4px 0 18px rgba(0,0,0,.25);transform:translateX(105%);visibility:hidden;transition:transform .2s;z-index:20;display:flex;flex-direction:column;padding:20px}
+.cart.open{transform:none;visibility:visible}
+.cart h2{margin-bottom:12px}
+.cart ul{list-style:none;flex:1;overflow:auto}
+.cart li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.cart li button{background:none;border:0;color:var(--muted);text-decoration:underline}
+.sum{padding:12px 0;font-size:.95rem}
+.sum div{display:flex;justify-content:space-between}
+.sum .tot{font-weight:bold;font-size:1.1rem;border-top:2px solid var(--ink);margin-top:6px;padding-top:6px}
+.cart .btn{text-align:center}
+.cart .hint{font-size:.85rem;color:var(--muted);margin-top:8px}
+@media(prefers-reduced-motion:reduce){.cart{transition:none}}
+@media(max-width:700px){.gal .ph{max-height:62vh}.hero .wrap{grid-template-columns:1fr}.big-sticker{width:150px;height:150px;justify-self:start}.big-sticker b{font-size:2.2rem}.d{grid-template-columns:1fr}.count{margin-left:0}.top nav a.hide{display:none}.grid{grid-template-columns:repeat(2,1fr);gap:20px 12px}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">Andre Hånd</a>
+    <nav>
+      <a class="hide" href="#butikk">Butikk</a>
+      <a class="hide" href="#info">Størrelse og frakt</a>
+      <button class="cartbtn" id="cartBtn" aria-label="Åpne handlekurv">Kurv (<span id="cartN">0</span>)</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Alt er brukt. Ingenting er likt.</h1>
+      <p>Håndplukket fra bruktbutikker og loppemarkeder. Bare ett eksemplar av hvert plagg.</p>
+      <a class="btn" href="#butikk">Se alle plagg</a>
+    </div>
+    <div class="big-sticker" aria-hidden="true"><b>1 av 1</b><span>Når det er solgt, er det borte</span></div>
+  </div>
+</section>
+
+<div class="filters" id="butikk">
+  <div class="wrap">
+    <div class="seg" id="katSeg" role="group" aria-label="Kategori"></div>
+    <select id="fType" aria-label="Plaggtype"></select>
+    <select id="fStr" aria-label="Størrelse"></select>
+    <select id="fSort" aria-label="Sortering">
+      <option value="ny">Nyeste først</option>
+      <option value="lav">Pris: lav til høy</option>
+      <option value="hoy">Pris: høy til lav</option>
+    </select>
+    <label class="chk"><input type="checkbox" id="fSolgt"> Skjul solgte</label>
+    <span class="count" id="count" aria-live="polite"></span>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+</main>
+
+<section class="info" id="info">
+  <div class="wrap">
+    <div><h2>Størrelser</h2><p>Gamle plagg er sjelden sydd etter dagens størrelser. Sjekk derfor målene på hvert plagg og sammenlign med noe du har hjemme.</p></div>
+    <div><h2>Slik bestiller du</h2><p>Legg plaggene i kurven og send bestillingen på e-post. Du får svar med betalingsinformasjon så fort jeg har sett den.</p></div>
+    <div><h2>Frakt</h2><p>Frakt er <span id="fraktTxt"></span> uansett hvor mange plagg du kjøper. Lurer du på noe om retur eller frakt, send en e-post før du bestiller.</p></div>
+  </div>
+</section>
+
+<footer><p>© 2026 Andre Hånd</p></footer>
+
+<dialog id="dlg" aria-label="Plaggdetaljer"></dialog>
+
+<aside class="cart" id="cart" aria-label="Handlekurv">
+  <h2>Handlekurv</h2>
+  <ul id="cartList"></ul>
+  <div class="sum" id="sum"></div>
+  <a class="btn" id="order" href="#">Send bestilling på e-post</a>
+  <p class="hint">Betaling avtales etter bestilling. Lukk kurven med Escape.</p>
+</aside>
+
+<!-- Plaggene og innstillingene ligger i produkter.js -->
+<script src="produkter.js"></script>
+<script>
+const SHAPES={
+ tskjorte:["M70 30 L38 50 L18 92 L50 102 L62 86 L62 214 L138 214 L138 86 L150 102 L182 92 L162 50 L130 30 Q100 56 70 30Z","M62 204 H138"],
+ genser:["M72 28 L40 44 L16 196 L48 204 L64 104 L64 216 L136 216 L136 104 L152 204 L184 196 L160 44 L128 28 Q100 50 72 28Z","M64 200 H136 M20 184 L52 192 M180 184 L148 192"],
+ hettegenser:["M72 34 Q100 6 128 34 L160 48 L184 196 L152 204 L136 108 L136 216 L64 216 L64 108 L48 204 L16 196 L40 48Z","M72 34 Q100 70 128 34 M80 150 H120 V190 H80Z"],
+ skjorte:["M72 28 L40 44 L16 196 L48 204 L64 104 L64 216 L136 216 L136 104 L152 204 L184 196 L160 44 L128 28 Q100 50 72 28Z","M100 54 V216 M84 30 L100 54 L116 30 M96 90 h8 M96 130 h8 M96 170 h8"],
+ jakke:["M68 28 L36 44 L14 204 L46 212 L62 112 L62 228 L138 228 L138 112 L154 212 L186 204 L164 44 L132 28 L100 78Z","M100 78 V228 M68 28 L100 78 L132 28 M70 172 H92 M108 172 H130"],
+ kjole:["M80 22 L66 22 L72 84 L48 222 L152 222 L128 84 L134 22 L120 22 Q100 52 80 22Z","M70 100 Q100 110 130 100"],
+ bukse:["M60 28 L140 28 L152 222 L108 222 L100 92 L92 222 L48 222Z","M60 46 H140 M100 28 V92"],
+ shorts:["M58 40 L142 40 L156 150 L108 150 L100 96 L92 150 L44 150Z","M58 58 H142 M100 40 V96"],
+ sko:["M30 150 Q34 110 70 104 L96 124 Q120 128 150 130 Q176 134 176 158 L176 172 L30 172Z","M30 160 H176 M72 112 L82 126 M84 108 L94 122"],
+ skjort:["M62 40 L138 40 L170 214 L30 214Z","M64 58 H136 M90 58 L70 212 M110 58 L130 212"]
+};
+const BG=["#d6dccf","#dcd3c6","#cfd8dc","#e0d4d8","#d9dcc3"];
+const TYPENAVN={tskjorte:"T-skjorter",genser:"Gensere",hettegenser:"Hettegensere",skjorte:"Skjorter",jakke:"Jakker",bukse:"Bukser",shorts:"Shorts",sko:"Sko",kjole:"Kjoler",skjort:"Skjørt"};
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const bg=p=>BG[p.id%BG.length];
+const kr=n=>n.toLocaleString("no-NO")+" kr";
+const harPris=p=>typeof p.pris==="number";
+const bilder=p=>Array.isArray(p.bilder)?p.bilder:[];
+
+function bildeHTML(p,src){
+  const s=src||bilder(p)[0];
+  if(s) return '<img src="'+esc(s)+'" alt="'+esc(p.navn)+'" loading="lazy">';
+  const f=SHAPES[p.type]||SHAPES.tskjorte;
+  return '<svg viewBox="0 0 200 240" role="img" aria-label="'+esc(p.navn)+'"><path d="'+f[0]+'" fill="#8d968f" stroke="rgba(0,0,0,.4)" stroke-width="2.5" stroke-linejoin="round"/><path d="'+f[1]+'" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="2.5" stroke-linecap="round"/></svg>';
+}
+const stickerTekst=p=>p.solgt?"Solgt":(harPris(p)?kr(p.pris):"Pris kommer");
+
+const S={kat:"Alle",type:"Alle",str:"Alle",sort:"ny",skjul:false};
+let kurv=[];
+
+function fyllFilter(){
+  const kats=[...new Set(PRODUKTER.map(p=>p.kat))];
+  const seg=$("katSeg");
+  if(kats.length>1){
+    seg.innerHTML=["Alle"].concat(kats).map(k=>'<button data-kat="'+esc(k)+'" aria-pressed="'+(k==="Alle")+'">'+esc(k)+'</button>').join("");
+    seg.onclick=e=>{const b=e.target.closest("[data-kat]");if(!b)return;S.kat=b.dataset.kat;seg.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));visGrid();};
+  } else seg.hidden=true;
+  const typer=[...new Set(PRODUKTER.map(p=>p.type))];
+  $("fType").innerHTML='<option value="Alle">Alle plaggtyper</option>'+typer.map(t=>'<option value="'+esc(t)+'">'+esc(TYPENAVN[t]||t)+'</option>').join("");
+  const str=[...new Set(PRODUKTER.map(p=>p.str).filter(Boolean))];
+  $("fStr").innerHTML='<option value="Alle">Alle størrelser</option>'+str.map(s=>'<option>'+esc(s)+'</option>').join("");
+  $("fraktTxt").textContent=kr(BUTIKK.frakt);
+}
+
+function visGrid(){
+  const l=PRODUKTER.filter(p=>(S.kat==="Alle"||p.kat===S.kat)&&(S.type==="Alle"||p.type===S.type)&&(S.str==="Alle"||p.str===S.str)&&!(S.skjul&&p.solgt));
+  const pr=(p,tom)=>harPris(p)?p.pris:tom;
+  if(S.sort==="lav") l.sort((a,b)=>pr(a,1e9)-pr(b,1e9));
+  else if(S.sort==="hoy") l.sort((a,b)=>pr(b,-1)-pr(a,-1));
+  else l.sort((a,b)=>b.id-a.id);
+  $("count").textContent=l.length+" plagg";
+  $("grid").innerHTML=l.length?l.map(p=>{
+    const sub=[p.merke,p.str?"Str. "+p.str:""].filter(Boolean).join(" · ");
+    return '<button class="item'+(p.solgt?' sold':'')+'" data-id="'+p.id+'" aria-label="'+esc(p.navn)+', '+esc(stickerTekst(p))+'">'+
+      '<div class="ph" style="background:'+bg(p)+'">'+bildeHTML(p)+'<span class="sticker">'+esc(stickerTekst(p))+'</span></div>'+
+      '<div class="meta"><h3>'+esc(p.navn)+'</h3><p>'+esc(sub)+'</p></div></button>';
+  }).join(""):'<p class="empty">Ingen plagg passer med filtrene dine. Prøv å fjerne ett av dem.</p>';
+}
+
+function visDetalj(id){
+  const p=PRODUKTER.find(x=>x.id===id), b=bilder(p), i=kurv.includes(id), d=$("dlg");
+  const rader=[["Merke",p.merke],["Størrelse",p.str],["Tilstand",p.tilstand],["Mål",p.mal]].filter(r=>r[1]);
+  let knapp;
+  if(p.solgt) knapp='<button class="btn" disabled>Solgt</button>';
+  else if(!harPris(p)) knapp='<button class="btn" disabled>Kan ikke bestilles ennå</button>';
+  else knapp='<button class="btn" id="addBtn">'+(i?'Ligger i kurven':'Legg i kurv')+'</button>';
+  d.innerHTML='<button class="close" aria-label="Lukk">✕</button><div class="d">'+
+    '<div class="gal"><div class="ph" id="mainPh" style="background:'+bg(p)+'">'+bildeHTML(p)+'</div>'+
+    (b.length>1?'<div class="thumbs" id="thumbs">'+b.map((s,k)=>'<button data-src="'+esc(s)+'" aria-label="Vis bilde '+(k+1)+'" aria-current="'+(k===0)+'"><img src="'+esc(s)+'" alt=""></button>').join("")+'</div>':'')+'</div>'+
+    '<div class="txt"><p>'+esc(p.kat)+'</p><h2>'+esc(p.navn)+'</h2><p>'+esc(p.tekst)+'</p>'+
+    (rader.length?'<dl>'+rader.map(r=>'<dt>'+r[0]+'</dt><dd>'+esc(r[1])+'</dd>').join("")+'</dl>':'')+
+    '<div class="price">'+esc(harPris(p)?kr(p.pris):"Pris kommer")+'</div>'+knapp+'</div></div>';
+  d.showModal();
+  d.querySelector(".close").onclick=()=>d.close();
+  const th=$("thumbs");
+  if(th) th.onclick=e=>{
+    const t=e.target.closest("button[data-src]"); if(!t)return;
+    $("mainPh").innerHTML=bildeHTML(p,t.dataset.src);
+    th.querySelectorAll("button").forEach(x=>x.setAttribute("aria-current",x===t));
+  };
+  const a=$("addBtn");
+  if(a) a.onclick=()=>{ if(!kurv.includes(id)){kurv.push(id);visKurv();} d.close(); $("cart").classList.add("open"); };
+}
+
+function visKurv(){
+  $("cartN").textContent=kurv.length;
+  const v=kurv.map(id=>PRODUKTER.find(p=>p.id===id));
+  $("cartList").innerHTML=v.length?v.map(p=>'<li><span>'+esc(p.navn)+(p.str?'<br><small>Str. '+esc(p.str)+'</small>':'')+'</span><span>'+kr(p.pris)+'<br><button data-rem="'+p.id+'">Fjern</button></span></li>').join(""):'<li>Kurven er tom.</li>';
+  const sum=v.reduce((s,p)=>s+p.pris,0), frakt=v.length?BUTIKK.frakt:0;
+  $("sum").innerHTML='<div><span>Plagg</span><span>'+kr(sum)+'</span></div><div><span>Frakt</span><span>'+kr(frakt)+'</span></div><div class="tot"><span>Totalt</span><span>'+kr(sum+frakt)+'</span></div>';
+  const body="Hei! Jeg vil gjerne kjøpe:\n\n"+v.map(p=>"- "+p.navn+(p.str?" (str. "+p.str+")":"")+" – "+kr(p.pris)).join("\n")+"\n\nFrakt: "+kr(frakt)+"\nTotalt: "+kr(sum+frakt)+"\n\nNavn og leveringsadresse:\n";
+  const o=$("order");
+  o.href=v.length?"mailto:"+BUTIKK.epost+"?subject="+encodeURIComponent("Bestilling fra nettbutikken")+"&body="+encodeURIComponent(body):"#";
+  o.style.opacity=v.length?1:.5;
+}
+
+$("fType").onchange=e=>{S.type=e.target.value;visGrid();};
+$("fStr").onchange=e=>{S.str=e.target.value;visGrid();};
+$("fSort").onchange=e=>{S.sort=e.target.value;visGrid();};
+$("fSolgt").onchange=e=>{S.skjul=e.target.checked;visGrid();};
+$("grid").onclick=e=>{const b=e.target.closest(".item");if(b)visDetalj(+b.dataset.id);};
+$("dlg").onclick=e=>{if(e.target===$("dlg"))$("dlg").close();};
+$("cartBtn").onclick=()=>$("cart").classList.toggle("open");
+$("cartList").onclick=e=>{const r=e.target.dataset.rem;if(r){kurv=kurv.filter(x=>x!==+r);visKurv();}};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("cart").classList.remove("open");});
+$("order").onclick=e=>{if(!kurv.length)e.preventDefault();};
+
+fyllFilter();visGrid();visKurv();
+</script>
+</body>
+</html>
